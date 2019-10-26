@@ -13,11 +13,14 @@
 </head>
 <body>
     <div id="DrawIt">
-        <p>{{test}}</p>
         <p>{{getList()}}</p>
-        <ul>
-            <li v-for="word in words">{{word.full}}: {{word.full.length}} ({{word.wordData.length}})</li>
-        </ul>
+        <input v-model="textFilter">
+        <p>{{textFilter}}</p>
+        <template v-for="word in words">
+            <div v-show="word.full.startsWith(textFilter)">
+                {{word.full}}: {{word.full.length}} ({{word.wordData.length}})
+            </div>
+        </template>
     </div>
     
     
