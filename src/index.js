@@ -10,7 +10,20 @@ const vm = new Vue({
     },
     computed: {
         words() {
-            return this.wordSets.map(wordSet => wordSet[0]) 
+            return this.wordSets.map(function(wordSet) {
+                const full = wordSet[0];
+                const subWords = full.split(' ');
+                const wordData = subWords.map(function(subWord) {
+                    return {
+                        word: subWord,
+                        len: subWord.lenght
+                    }
+                });
+                return {
+                    "full": full,
+                    "wordData": wordData
+                }
+            });
         }
     },
     methods: {
