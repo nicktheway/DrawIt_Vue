@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="#"/>
     <title>Document</title>
     <script src="modules/vue.min.js"></script>
     <script src="modules/axios.min.js"></script>
+    <script src="modules/papaparse.min.js"></script>
     <script src="modules/require.min.js"></script>
 </head>
 <body>
     <div id="DrawIt">
         <p>{{test}}</p>
         <p>{{getList()}}</p>
+        <ul>
+            <li v-for="word in words">{{word.full}}: {{word.full.length}} ({{word.wordData.length}})</li>
+        </ul>
     </div>
     
     
