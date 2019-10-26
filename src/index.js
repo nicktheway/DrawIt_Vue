@@ -4,6 +4,7 @@ const vm = new Vue({
     data() {
         return {
             textFilter: "",
+            wordNumInput: "",
             wordSets: [],
             url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSj__epm1Cu0PF8OtCIvlFJ3V05d8Qew0QqHX-xPYnpK0XlqoNEPuon6llknJISqcihE4nPP5in8OER/pub?output=csv"
         }
@@ -24,6 +25,14 @@ const vm = new Vue({
                     "wordData": wordData
                 }
             });
+        },
+        wordNum() {
+            const intNum = parseInt(this.wordNumInput)
+            if (intNum) {
+                return intNum;
+            } else {
+                return 0;
+            }
         }
     },
     methods: {
