@@ -5,28 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="#"/>
+    <link rel='stylesheet' href='styles.css'/>
     <title>Document</title>
     <script src="modules/vue.min.js"></script>
     <script src="modules/axios.min.js"></script>
     <script src="modules/papaparse.min.js"></script>
-    <script src="modules/require.min.js"></script>
 </head>
 <body>
     <div id="DrawIt">
-        <p>{{getList()}}</p>
-        <p>Πόσες λέξεις;</p>
-        <input v-model="wordNumInput">
-        <p>Τι έχουμε;</p>
-        <input v-model="textFilter">
-        
-        <template v-for="word in words">
-            <div v-show="word.full.startsWith(textFilter) && (wordNum === 0 || word.wordData.length == wordNum)">
-                {{word.full}}: {{word.full.length}} ({{word.wordData.length}})
+        <div class="app">
+            <div class="app-menu-container">
+                <div class="app-menu">
+                    <template>{{getList()}}</template>
+                    <div class="app-menu-item">
+                        <p>Πόσες λέξεις;</p>
+                        <input v-model="wordNumInput">
+                    </div>
+                    <div class="app-menu-item">
+                        <p>Τι έχουμε;</p>
+                        <input v-model="textFilter">
+                    </div>
+                </div>
             </div>
-        </template>
+            <div class="app-wordlist">
+                <template v-for="word in words">
+                    <div v-show="word.full.startsWith(textFilter) && (wordNum === 0 || word.wordData.length == wordNum)">
+                        {{word.full}}: {{word.full.length}} ({{word.wordData.length}})
+                    </div>
+                </template>
+            </div>
+        </div>
     </div>
-    
-    
 </body>
 <script src="src/index.js"></script>
 </html>

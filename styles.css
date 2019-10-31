@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+  }
+  
+  .app-menu-container {
+    padding: 20px;
+    background-color: #5995DA;  /* Blue */
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-menu {
+    /* border: 1px solid #fff;  For debugging */
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .app-menu-item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 0.707em;
+  }
+
+  .app-wordlist {
+    color: rebeccapurple;
+    text-align: center;
+    overflow: scroll;
+    margin: 16px;
+  }
