@@ -99,4 +99,7 @@ const vm = new Vue({
             event.currentTarget.style.color = "green";
         }
     },
+    beforeMount() {
+        this.getList();
+    },
 })
