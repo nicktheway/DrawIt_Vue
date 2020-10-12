@@ -92,7 +92,8 @@ const vm = new Vue({
     },
     methods: {
         getList() {
-            axios.get(this.url).then(data => this.wordSets = Papa.parse(data.data)['data']);
+            let promise = axios.get(this.url).then(data => this.wordSets = Papa.parse(data.data)['data']);
+            return promise;
         },
         copyToClipboard(text, event) {
             copyTextToClipboard(text);
@@ -100,6 +101,7 @@ const vm = new Vue({
         }
     },
     beforeMount() {
-        this.getList();
+        // The list contains a header, so remove it:
+        this.getList().then(() => this.wordSets.shift());
     },
 })
