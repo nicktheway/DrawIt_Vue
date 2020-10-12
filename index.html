@@ -17,16 +17,17 @@
             <div class="app-menu-container">
                 <div class="app-menu">
                     <div class="app-menu-item">
-                        <p>Πόσες λέξεις;</p>
+                        <p class="app-menu-label">Πόσες λέξεις;</p>
                         <input v-model="wordNumInput">
                     </div>
                     <div class="app-menu-item">
-                        <p>Τι έχουμε;</p>
+                        <p class="app-menu-label">Τι έχουμε;</p>
                         <input v-model="textFilter">
                     </div>
                 </div>
             </div>
             <div class="app-wordlist">
+                <div class="loader" v-show="wordSets.length === 0"></div>
                 <template v-for="word in words">
                     <div v-show="word.full.startsWith(textFilter) && (wordNum === 0 || word.wordData.length == wordNum)" @click="copyToClipboard(word.full, $event)">
                         <span class="app-word">{{word.full}} ({{word.full.length}})</span>
