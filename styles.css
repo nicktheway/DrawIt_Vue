@@ -31,6 +31,14 @@
     justify-content: space-evenly;
   }
 
+  .app-menu input {
+    border-radius: 3px;
+    height: 30px;
+    width: 200px;
+    border: none;
+    padding: 7px;
+  }
+
   .app-menu-item {
     display: flex;
     align-items: center;
@@ -39,7 +47,8 @@
   }
 
   .app-menu-label {
-    margin-bottom: 3px;
+    margin-bottom: 6px;
+    font-size: 1.2em;
   }
 
   .app-wordlist {
