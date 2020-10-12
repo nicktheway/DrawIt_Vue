@@ -29,7 +29,7 @@
             <div class="app-wordlist">
                 <template v-for="word in words">
                     <div v-show="word.full.startsWith(textFilter) && (wordNum === 0 || word.wordData.length == wordNum)" @click="copyToClipboard(word.full, $event)">
-                        {{word.full}}: {{word.full.length}} ({{word.wordData.length}})
+                        <span class="app-word">{{word.full}} ({{word.full.length}})</span>
                     </div>
                 </template>
             </div>
