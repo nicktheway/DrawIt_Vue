@@ -60,6 +60,7 @@ const vm = new Vue({
         return {
             textFilter: "",
             wordNumInput: "",
+            letterNumInput: "",
             wordSets: [],
             url: "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSj__epm1Cu0PF8OtCIvlFJ3V05d8Qew0QqHX-xPYnpK0XlqoNEPuon6llknJISqcihE4nPP5in8OER/pub?output=csv"
         }
@@ -72,7 +73,7 @@ const vm = new Vue({
                 const wordData = subWords.map(function(subWord) {
                     return {
                         word: subWord,
-                        len: subWord.lenght
+                        len: subWord.length
                     }
                 });
                 return {
@@ -82,13 +83,33 @@ const vm = new Vue({
             });
         },
         wordNum() {
-            const intNum = parseInt(this.wordNumInput)
+            const intNum = parseInt(this.wordNumInput);
             if (intNum) {
                 return intNum;
-            } else {
-                return 0;
             }
-        }
+            return 0;
+        },
+        letterNums() {
+            const parsedArray = this.letterNumInput.match(/([0-9]+\+?)+/gm);
+            if (parsedArray) {
+                return parsedArray.map(val => ({'value': parseInt(val), 'greaterFlag': val.indexOf('+') !== -1}));
+            }
+            return [];
+        },
+        filteredWords() {
+            return this.words.filter(word => word.full.startsWith(this.textFilter))
+                            .filter(word => this.wordNum === 0 || word.wordData.length === this.wordNum)
+                            .filter(word => {
+                                if (!this.letterNums) return true;
+                                if (this.letterNums.length > word.wordData.length) return false;
+                                for (let i = 0; i < word.wordData.length; i++) {
+                                    if (!this.letterNums[i]) return true;
+                                    if (this.letterNums[i].greaterFlag && this.letterNums[i].value > word.wordData[i].len) return false;
+                                    if (!this.letterNums[i].greaterFlag && this.letterNums[i].value !== word.wordData[i].len) return false;
+                                }
+                                return true;
+                            })
+        },
     },
     methods: {
         getList() {

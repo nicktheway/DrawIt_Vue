@@ -27,6 +27,10 @@
                         <input v-model="wordNumInput" type="number" min="0" max="5">
                     </div>
                     <div class="app-menu-item">
+                        <p class="app-menu-label">Πόσα γράμματα;</p>
+                        <input v-model="letterNumInput">
+                    </div>
+                    <div class="app-menu-item">
                         <p class="app-menu-label">Τι έχουμε;</p>
                         <input v-model="textFilter">
                     </div>
@@ -34,8 +38,8 @@
             </div>
             <div class="app-wordlist">
                 <div class="loader" v-show="wordSets.length === 0"></div>
-                <template v-for="word in words">
-                    <div v-show="word.full.startsWith(textFilter) && (wordNum === 0 || word.wordData.length == wordNum)" @click="copyToClipboard(word.full, $event)">
+                <template v-for="word in filteredWords">
+                    <div @click="copyToClipboard(word.full, $event)">
                         <span class="app-word">{{word.full}} ({{word.full.length}})</span>
                     </div>
                 </template>
